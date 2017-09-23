@@ -37,6 +37,14 @@ class Doctor
     DB.exec("UPDATE doctors SET name = '#{@name}' WHERE id = #{self.id};")
   end
 
+  def self.doctor_patient_count
+    results = DB.exec("SELECT doctors.name, COUNT(*) FROM patients INNER JOIN doctors ON doctors.id = patients.doctor_id GROUP BY doctors.name;")
+    results.map do |result|
+    name = result['name'],
+    count = result['count']
+    end
+  end
+
   def delete
     DB.exec("DELETE FROM doctors WHERE id = #{self.id}")
   end

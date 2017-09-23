@@ -91,6 +91,20 @@ describe 'Doctor' do
     end
   end
 
+  describe '.doctor_patient_count' do
+    it 'will return doctors with patient count' do
+      doctor3.save
+      doctor.save
+      patient = Patient.new({name: "Elrey", birthday: "1980-01-22", doctor_id: doctor.id})
+      patient2 = Patient.new({name: "Elrey", birthday: "1980-01-22", doctor_id: doctor.id})
+      patient3 = Patient.new({name: "Oscar", birthday: "1987-10-06", doctor_id: doctor3.id})
+      patient.save
+      patient2.save
+      patient3.save
+      expect(Doctor.doctor_patient_count).to eq [["Dr. Belmonti", "1"], ["Dr. Smith", "2"]]
+    end
+  end
+
   describe '#delete' do
     it 'will delete doctor from database' do
       doctor.save

@@ -9,7 +9,7 @@ class Patient
   end
 
   def save
-    result = DB.exec("INSERT INTO patient (name, birthday, doctor_id) VALUES ('#{@name}', '#{@birthday}', #{@doctor_id}) RETURNING id;")
+    result = DB.exec("INSERT INTO patients (name, birthday, doctor_id) VALUES ('#{@name}', '#{@birthday}', #{@doctor_id}) RETURNING id;")
     @id = result.first['id'].to_i
   end
 
@@ -20,19 +20,28 @@ class Patient
 
   def self.find(id)
     patient = DB.exec("SELECT * FROM patients WHERE id = #{id};")
-    Patient.map_patients(patient)
+    Patient.map_patients(patient).first
   end
 
   def self.sort_by(query)
-    patients = DB.exec("SELECT * FROM patients ORDER BY '#{query}';")
+    patients = DB.exec("SELECT * FROM patients ORDER BY #{query} ASC;")
     Patient.map_patients(patients)
   end
-  # 
-  # def update(args, query = "name")
-  #   case query
-  #   when "name"
-  #     @name =
-  # end
+
+  def update(args, query = "name")
+    case query
+    when "name"
+      @name = args[:name]
+      DB.exec("UPDATE patients SET name = '#{@name}' WHERE id = #{self.id};")
+    when "doctor_id"
+      @doctor_id = args[:doctor_id]
+      DB.exec("UPDATE patients SET doctor_id = #{@doctor_id} WHERE id = #{self.id};")
+    end
+  end
+
+  def delete
+    DB.exec("DELETE FROM patients WHERE id = #{self.id};")
+  end
 
   def ==(other_patient)
     self.id == other_patient.id &&
@@ -49,7 +58,7 @@ class Patient
         id: patient['id'].to_i,
         name: patient['name'],
         birthday: patient['birthday'],
-        doctor_id: patient['doctor_id']
+        doctor_id: patient['doctor_id'].to_i
         })
     end
   end

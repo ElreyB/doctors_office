@@ -60,7 +60,7 @@ describe 'Patient' do
     it 'will return patients sorted my name' do
       patient2.save
       patient3.save
-      expect(Patient.sort_by("name")).to eq [patient3, patient2]
+      expect(Patient.sort_by("name")).to eq [patient2, patient3]
     end
 
     it 'will return patients sorted my name' do
@@ -91,7 +91,7 @@ describe 'Patient' do
 
     it 'will update patients doctor if specify in database' do
       patient.save
-      patient.update({doctor_id: 1}, "doctor")
+      patient.update({doctor_id: 1}, "doctor_id")
       expect(patient.doctor_id).to eq 1
     end
   end

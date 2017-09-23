@@ -34,7 +34,7 @@ class Doctor
 
   def update_name(args)
     @name = args[:name]
-    DB.exec("UPDATE doctors SET name = '#{@name}' WHERE id = #{self.id} ")
+    DB.exec("UPDATE doctors SET name = '#{@name}' WHERE id = #{self.id};")
   end
 
   def delete

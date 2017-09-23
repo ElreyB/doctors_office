@@ -17,6 +17,11 @@ class Doctor
     Doctor.map_doctors(doctor).first
   end
 
+  def self.find_specialist(id)
+    doctors = DB.exec("SELECT * FROM doctors WHERE specialty_id = #{id};")
+    Doctor.map_doctors(doctors)
+  end
+
   def self.sort_by(query)
     doctors = DB.exec("SELECT * FROM doctors ORDER BY #{query} ASC;")
     Doctor.map_doctors(doctors)

@@ -20,14 +20,12 @@ describe 'Patient' do
       expect(patient.id).to be_an Integer
     end
 
-    it 'has a number for an id once it is saved' do
-      patient.save
+    it 'has a readable birthday' do
       expect(patient.birthday).to eq "1980-01-22"
     end
 
     it 'has a number for an id once it is saved' do
-      patient.save
-      expect(patient.doctor_id).to be_an Integer
+      expect(patient.doctor_id).to eq 1
     end
   end
 
@@ -78,22 +76,22 @@ describe 'Patient' do
     end
   end
 
-  describe '#update_name' do
+  describe '#update' do
     it 'will update patient in database' do
       patient.save
-      patient.update_name({name: "Osrey"})
+      patient.update({name: "Osrey"})
       expect(Patient.all).to eq [patient]
     end
 
-    it 'will update patient in database' do
+    it 'will update patients name by default in database' do
       patient.save
-      patient.update_name({name: "Osrey"})
+      patient.update({name: "Osrey"})
       expect(patient.name).to eq "Osrey"
     end
 
-    it 'will update patient in database' do
+    it 'will update patients doctor if specify in database' do
       patient.save
-      patient.update_name({doctor_id: 1}, "doctor")
+      patient.update({doctor_id: 1}, "doctor")
       expect(patient.doctor_id).to eq 1
     end
   end

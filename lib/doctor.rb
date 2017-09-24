@@ -45,6 +45,14 @@ class Doctor
     end
   end
 
+  def patients_list
+    results = DB.exec("SELECT patients.name FROM doctors INNER JOIN patients ON #{self.id} = patients.doctor_id GROUP BY patients.name;")
+    patients = results.map do |result|
+      name = result['name']
+    end
+    patients.sort
+  end
+
   def delete
     DB.exec("DELETE FROM doctors WHERE id = #{self.id}")
   end

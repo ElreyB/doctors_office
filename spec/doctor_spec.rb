@@ -105,6 +105,22 @@ describe 'Doctor' do
     end
   end
 
+  describe '.patients_list' do
+    it 'returns a list of patients assign to doctor' do
+      doctor.save
+      doctor3.save
+      patient = Patient.new({name: "Elrey", birthday: "1980-01-22", doctor_id: doctor.id})
+      patient2 = Patient.new({name: "Elrey", birthday: "1980-01-22", doctor_id: doctor.id})
+      patient3 = Patient.new({name: "Oscar", birthday: "1987-10-06", doctor_id: doctor3.id})
+      patient4 = Patient.new({name: "Bob", birthday: "1987-10-06", doctor_id: doctor3.id})
+      patient.save
+      patient2.save
+      patient3.save
+      patient4.save
+      expect(doctor3.patients_list).to eq ["Bob", "Oscar"]
+    end
+  end
+
   describe '#delete' do
     it 'will delete doctor from database' do
       doctor.save

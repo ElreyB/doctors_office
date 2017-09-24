@@ -2,7 +2,7 @@
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <form action="/tasks" method="post">
+        <form action="/doctor" method="post">
           <label for="specialties_list">Select a Specialty</label>
           <select id='specialties_list' name='specialty' type='text'>
             <% @specialties.each do |specialty| %>
@@ -10,12 +10,20 @@
             <% end %>
           </select>
           <label for="doctor">Add Doctor to Staff:</label>
-          <input id="doctor" name="doctor" type="text" placeholder="Doctor's Name">
+          <input id="doctor" name="doctor-name" type="text" placeholder="Doctor's Name">
           <button type="submit" class="btn">Add Doctor</button>
         </form>
       </div>
       <div class="panel-body">
-        Panel content
+        <% if @doctors.any? %>
+          <% @doctors.each do |doctor| %>
+            <ul>
+              <li><a href="/doctors/<%= doctor.id %>"> <%= doctor.name %> : <%= Specialty.find(doctor.specialty_id).name %> </a></li>
+            </ul>
+          <% end %>
+        <% else %>
+          <h3>There are currently no doctors at this office.</h3>
+        <% end %>
       </div>
     </div>
   </div>

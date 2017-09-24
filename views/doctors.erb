@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <%= @doctor.name %> </h3>
+  </div>
+  <div class="panel-body">
+    <% if @patients.any? %>
+      <h3>List of Patients assign to you:</h3>
+      <% @patients.each do |patient| %>
+        <ul>
+          <li> <%= patient %> </li>
+        </ul>
+      <% end %>
+    <% else %>
+      <h3>Currently have no patients.</h3>
+    <% end %>
+  </div>
+</div>
+<footer>
+  <a href="/"><button type="button" class="btn">Home</button></a>
+</footer>

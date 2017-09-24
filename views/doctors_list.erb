@@ -4,7 +4,7 @@
       <div class="panel-heading">
         <form action="/doctor" method="post">
           <label for="specialties_list">Select a Specialty</label>
-          <select id='specialties_list' name='specialty' type='text'>
+          <select id='specialties_list' name='specialty-id' type='text'>
             <% @specialties.each do |specialty| %>
             <option value="<%= specialty.id%>"> <%= specialty.name %> </option>
             <% end %>
@@ -16,6 +16,7 @@
       </div>
       <div class="panel-body">
         <% if @doctors.any? %>
+          <h3>List of Current Doctors in Office</h3>
           <% @doctors.each do |doctor| %>
             <ul>
               <li><a href="/doctors/<%= doctor.id %>"> <%= doctor.name %> : <%= Specialty.find(doctor.specialty_id).name %> </a></li>
@@ -28,3 +29,6 @@
     </div>
   </div>
 </div>
+<footer>
+  <a href="/"><button type="button" class="btn">Home</button></a>
+</footer>

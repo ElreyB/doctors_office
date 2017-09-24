@@ -79,13 +79,13 @@ describe 'Patient' do
   describe '#update' do
     it 'will update patient in database' do
       patient.save
-      patient.update({name: "Osrey"})
+      patient.update({name: "Osrey"}, "name")
       expect(Patient.all).to eq [patient]
     end
 
     it 'will update patients name by default in database' do
       patient.save
-      patient.update({name: "Osrey"})
+      patient.update({name: "Osrey"}, "name")
       expect(patient.name).to eq "Osrey"
     end
 

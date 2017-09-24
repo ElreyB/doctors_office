@@ -28,7 +28,7 @@ class Patient
     Patient.map_patients(patients)
   end
 
-  def update(args, query = "name")
+  def update(args, query = nil)
     case query
     when "name"
       @name = args[:name]

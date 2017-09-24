@@ -28,8 +28,7 @@ class Specialty
 
   def update(args)
     @name = args[:name]
-    @id = self.id
-    DB.exec("UPDATE specialties SET name = '#{@name}' WHERE id = #{@id};")
+    DB.exec("UPDATE specialties SET name = '#{@name}' WHERE id = #{self.id};")
   end
 
   def delete

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <form action="/tasks" method="post">
+          <label for="specialties_list">Select a Specialty</label>
+          <select id='specialties_list' name='specialty' type='text'>
+            <% @specialties.each do |specialty| %>
+            <option value="<%= specialty.id%>"> <%= specialty.name %> </option>
+            <% end %>
+          </select>
+          <label for="doctor">Add Doctor to Staff:</label>
+          <input id="doctor" name="doctor" type="text" placeholder="Doctor's Name">
+          <button type="submit" class="btn">Add Doctor</button>
+        </form>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
+</div>

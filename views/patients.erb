@@ -1,13 +1,27 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"> <%= @patient.name %>  </h3>
+    <h3 class="panel-title">
+      <div class="row">
+        <div class="col-xs-3">
+          Name: <%= @patient.name %>
+        </div>
+        <div class="col-xs-3">
+          D.O.B: <%= @patient.birthday %>
+        </div>
+        <div class="col-xs-3">
+          Doctor: <%= @doctor.name %>
+        </div>
+        <div class="col-xs-3">
+          Specialty: <%= @specialty.name %>
+        </div>
+      </div>
+    </h3>
   </div>
 </div>
 <div class="panel-body">
-  <form class="patient-notes" action="index.html" method="post">
-    
+  <form class="patient-notes" action="#" method="post">
+    <textarea name="patient-notes" rows="8" cols="158" placeholder="Notes"></textarea>
   </form>
-  </div>
 </div>
 <footer>
   <a href="/"><button type="button" class="btn">Home</button></a>

@@ -7,7 +7,7 @@
       <h3>List of Patients assign to you:</h3>
       <% @patients.each do |patient| %>
         <ul>
-          <li> <%= patient %> </li>
+          <li> <%= patient.name %> </li>
         </ul>
       <% end %>
     <% else %>

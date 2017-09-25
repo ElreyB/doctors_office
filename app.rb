@@ -5,6 +5,7 @@ require "pg"
 require "./lib/doctor"
 require "./lib/patient"
 require "./lib/specialty"
+require "./lib/note"
 require "pry"
 
 DB = PG.connect({:dbname => 'doctor_office_test'})
@@ -12,6 +13,7 @@ DB = PG.connect({:dbname => 'doctor_office_test'})
 # DB.exec('DELETE FROM specialties *;')
 # DB.exec('DELETE FROM doctors *;')
 # DB.exec('DELETE FROM patients *;')
+# DB.exec('DELETE FROM notes *;')
 
 specialties = []
 File.open('specialties.txt', 'r') do |file|
@@ -60,10 +62,12 @@ get ("/doctors/patients/:id") do
 end
 
 post("/doctor") do
-  specialty_id = params['specialty-id'].to_i
   doctor_name = params['doctor-name']
-  doctor = Doctor.new({name: doctor_name, specialty_id: specialty_id})
-  doctor.save
+  if !doctor_name.empty?
+    specialty_id = params['specialty-id'].to_i
+    doctor = Doctor.new({name: doctor_name, specialty_id: specialty_id})
+    doctor.save
+  end
   redirect 'doctors'
 end
 

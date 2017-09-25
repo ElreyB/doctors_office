@@ -1,6 +1,7 @@
 require 'specialty'
 require 'doctor'
 require 'patient'
+require 'note'
 require 'rspec'
 require 'pry'
 require 'pg'
@@ -12,5 +13,6 @@ RSpec.configure do |config|
     DB.exec('DELETE FROM specialties *;')
     DB.exec('DELETE FROM doctors *;')
     DB.exec('DELETE FROM patients *;')
+    DB.exec('DELETE FROM notes *;')
   end
 end

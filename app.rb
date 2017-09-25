@@ -43,6 +43,7 @@ end
 
 get('/doctors/:id') do
   @doctor = Doctor.find(params[:id].to_i)
+  @specialty = Specialty.find(@doctor.specialty_id)
   @patients = @doctor.patients_list
   erb(:doctors)
 end
@@ -52,6 +53,10 @@ get("/patients/:id") do
   @doctor = Doctor.find(@patient.doctor_id)
   @specialty = Specialty.find(@doctor.specialty_id)
   erb(:patients)
+end
+
+get ("/doctors/patients/:id") do
+  redirect "patients/:id"
 end
 
 post("/doctor") do

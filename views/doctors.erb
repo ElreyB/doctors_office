@@ -1,13 +1,22 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"> <%= @doctor.name %> </h3>
+    <h3 class="panel-title">
+      <div class="row">
+        <div class="col-xs-6">
+          Name : <%= @doctor.name %>
+        </div>
+        <div class="col-xs-6">
+          Specialty: <%= @specialty.name %>
+        </div>
+      </div>
+    </h3>
   </div>
   <div class="panel-body">
     <% if @patients.any? %>
       <h3>List of Patients assign to you:</h3>
       <% @patients.each do |patient| %>
         <ul>
-          <li> <%= patient.name %> </li>
+          <li><a href="/patients/<%= patient.id %>"><%= patient.name %></a></li>
         </ul>
       <% end %>
     <% else %>

@@ -1,34 +1,33 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <form action="/doctor" method="post">
-          <label for="specialties_list">Select a Specialty</label>
-          <select id='specialties_list' name='specialty-id' type='text'>
-            <% @specialties.each do |specialty| %>
-            <option value="<%= specialty.id%>"> <%= specialty.name %> </option>
-            <% end %>
-          </select>
-          <label for="doctor">Add Doctor to Staff:</label>
-          <input id="doctor" name="doctor-name" type="text" placeholder="Doctor's Name">
-          <button type="submit" class="btn">Add Doctor</button>
-        </form>
-      </div>
-      <div class="panel-body">
-        <% if @doctors.any? %>
-          <h3>List of Current Doctors in Office</h3>
-          <% @doctors.each do |doctor| %>
-            <ul>
-              <li><a href="/doctors/<%= doctor.id %>"> <%= doctor.name %> : <%= Specialty.find(doctor.specialty_id).name %> </a></li>
-            </ul>
-          <% end %>
-        <% else %>
-          <h3>There are currently no doctors at this office.</h3>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <form action="/doctor" method="post">
+      <label for="specialties_list">Select a Specialty</label>
+      <select id='specialties_list' name='specialty-id' type='text'>
+        <% @specialties.each do |specialty| %>
+        <option value="<%= specialty.id%>"> <%= specialty.name %> </option>
         <% end %>
-      </div>
-    </div>
+      </select>
+      <label for="doctor">Add Doctor to Staff:</label>
+      <input id="doctor" name="doctor-name" type="text" placeholder="Doctor's Name">
+      <button type="submit" class="btn">Add Doctor</button>
+    </form>
+  </div>
+  <div class="panel-body">
+    <% if @doctors.any? %>
+      <h3>List of Current Doctors in Office</h3>
+      <% @doctors.each do |doctor| %>
+        <ul>
+          <li><a href="/doctors/<%= doctor.id %>"> <%= doctor.name %> : <%= Specialty.find(doctor.specialty_id).name %> </a></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <h3>There are currently no doctors at this office.</h3>
+    <% end %>
   </div>
 </div>
+
 <footer>
   <a href="/"><button type="button" class="btn">Home</button></a>
+  <a href="/specialties"><button type="button" class="btn">Doctor by Specialty</button></a>
 </footer>

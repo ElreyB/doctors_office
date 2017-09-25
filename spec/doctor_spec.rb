@@ -61,6 +61,16 @@ describe 'Doctor' do
       doctor3.save
       expect(Doctor.find_specialist(specialty.id)).to eq [doctor, doctor2]
     end
+
+    it 'finds doctors by specialty' do
+      specialty = Specialty.new({name: "Urology"})
+      specialty.save
+      doctor.save
+      doctor2.save
+      doctor3 = Doctor.new({name: "Dr. Belmonti", specialty_id: specialty.id })
+      doctor3.save
+      expect(Doctor.find_specialist(specialty.id)).to eq [doctor3]
+    end
   end
 
   describe '.sort_by' do

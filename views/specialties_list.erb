@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Doctors by specialties</h3>
+  </div>
+  <div class="panel-body">
+    <form class="" action="/specialty" method="post">
+      <label for="specialties_list">Select a Specialty</label>
+      <select id='specialties_list' name='specialty-id' type='text'>
+        <% @specialties.each do |specialty| %>
+        <option value="<%= specialty.id %>"> <%= specialty.name %> </option>
+        <% end %>
+      </select>
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <% if @doctors && @doctors.any? %>
+      <% @doctors.each do |doctor| %>
+        <ul>
+          <li><a href="/doctors/<%= doctor.id %>"> <%= doctor.name %> </a></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <h3>Currently no doctors in that specialty</h3>
+    <% end %>
+  </div>
+</div>
+<footer>
+  <a href="/"><button type="button" class="btn">Home</button></a>
+  <a href="/specialties"><button type="button" class="btn">Doctor by Specialty</button></a>
+</footer>

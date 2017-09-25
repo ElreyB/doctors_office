@@ -10,10 +10,10 @@ require "pry"
 
 DB = PG.connect({:dbname => 'doctor_office_test'})
 
-# DB.exec('DELETE FROM specialties *;')
-# DB.exec('DELETE FROM doctors *;')
-# DB.exec('DELETE FROM patients *;')
-# DB.exec('DELETE FROM notes *;')
+DB.exec('DELETE FROM specialties *;')
+DB.exec('DELETE FROM doctors *;')
+DB.exec('DELETE FROM patients *;')
+DB.exec('DELETE FROM notes *;')
 
 specialties = []
 File.open('specialties.txt', 'r') do |file|
@@ -57,8 +57,13 @@ get("/patients/:id") do
   erb(:patients)
 end
 
-get ("/doctors/patients/:id") do
+get("/doctors/patients/:id") do
   redirect "patients/:id"
+end
+
+get("/specialties") do
+  @specialties = Specialty.all
+  erb(:specialties_list)
 end
 
 post("/doctor") do
@@ -68,7 +73,15 @@ post("/doctor") do
     doctor = Doctor.new({name: doctor_name, specialty_id: specialty_id})
     doctor.save
   end
+  # binding.pry
   redirect 'doctors'
+end
+
+post("/specialty") do
+  @specialty = Specialty.find(params['specialty-id'].to_i)
+  @doctors = Doctor.find_specialist(@specialty.id)
+  @specialties = Specialty.all
+  erb(:specialties_list)
 end
 
 post('/patient') do

@@ -47,6 +47,11 @@ get('/doctors/:id') do
   erb(:doctors)
 end
 
+get("/patients/:id") do
+  @patient = Patient.find(params[:id].to_i)
+  erb(:patients)
+end
+
 post("/doctor") do
   specialty_id = params['specialty-id'].to_i
   doctor_name = params['doctor-name']

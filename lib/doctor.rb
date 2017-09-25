@@ -39,18 +39,13 @@ class Doctor
 
   def self.doctor_patient_count
     results = DB.exec("SELECT doctors.name, COUNT(*) FROM patients INNER JOIN doctors ON doctors.id = patients.doctor_id GROUP BY doctors.name;")
-    results.map do |result|
-    name = result['name'],
-    count = result['count']
-    end
+    results.values
   end
 
   def patients_list
-    results = DB.exec("SELECT patients.name FROM doctors INNER JOIN patients ON #{self.id} = patients.doctor_id GROUP BY patients.name;")
-    patients = results.map do |result|
-      name = result['name']
-    end
-    patients.sort
+    results = DB.exec("SELECT patients.id, patients.name, patients.birthday, patients.doctor_id FROM patients INNER JOIN doctors ON #{self.id} = patients.doctor_id GROUP BY patients.id, patients.name, patients.birthday, patients.doctor_id ORDER BY patients.name ASC;")
+
+    Patient.map_patients(results)
   end
 
   def delete

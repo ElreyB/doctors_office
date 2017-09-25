@@ -117,7 +117,7 @@ describe 'Doctor' do
       patient2.save
       patient3.save
       patient4.save
-      expect(doctor3.patients_list).to eq ["Bob", "Oscar"]
+      expect(doctor3.patients_list).to eq [patient4, patient3]
     end
   end
 

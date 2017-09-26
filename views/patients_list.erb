@@ -1,44 +1,40 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <form action="/patient" method="post">
-          <div class="row">
-            <div class="col-xs-2">
-              <label for="doctors_list">Select a Doctor</label>
-              <select id='doctors_list' name='doctor-id' type='text'>
-                <% @doctors.each do |doctor| %>
-                <option value="<%= doctor.id%>"> <%= doctor.name %> </option>
-                <% end %>
-              </select>
-            </div>
-            <div class="col-xs-4">
-              <label for="patient">Add Patient to Roster:</label>
-              <input id="patient" name="patient-name" type="text" placeholder="Patient's Name">
-            </div>
-            <div class="col-xs-3">
-              <label for="birthday">D.O.B</label>
-              <input id="birthday" name="patient-birthday" type="date" placeholder="Patient's Birthday">
-            </div>
-            <div class="col-xs-3">
-              <button type="submit" class="btn">Add Patient</button>
-            </div>
-          </div>
-        </form>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <form action="/patient" method="post">
+      <div class="row">
+        <div class="col-xs-3">
+          <label for="doctors_list">Select a Doctor</label>
+          <select id='doctors_list' name='doctor-id' type='text'>
+            <% @doctors.each do |doctor| %>
+            <option value="<%= doctor.id%>"> <%= doctor.name %> </option>
+            <% end %>
+          </select>
+        </div>
+        <div class="col-xs-4">
+          <label for="patient">Add Patient to Roster:</label>
+          <input id="patient" name="patient-name" type="text" placeholder="Patient's Name">
+        </div>
+        <div class="col-xs-3">
+          <label for="birthday">D.O.B</label>
+          <input id="birthday" name="patient-birthday" type="date" placeholder="Patient's Birthday">
+        </div>
+        <div class="col-xs-1">
+          <button type="submit" class="btn add">Add Patient</button>
+        </div>
       </div>
-      <div class="panel-body">
-        <% if @patients.any? %>
-          <h3>List of Current Patients on Roster</h3>
-          <% @patients.each do |patient| %>
-            <ul>
-              <li><a href="/patients/<%= patient.id %>"> <%= patient.name %> </a></li>
-            </ul>
-          <% end %>
-        <% else %>
-          <h3>There are currently no patients on roster.</h3>
-        <% end %>
-      </div>
-    </div>
+    </form>
+  </div>
+  <div class="panel-body">
+    <% if @patients.any? %>
+      <h3>List of Current Patients on Roster</h3>
+      <% @patients.each do |patient| %>
+        <ul>
+          <li><a href="/patients/<%= patient.id %>"> <%= patient.name %> </a></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <h3>There are currently no patients on roster.</h3>
+    <% end %>
   </div>
 </div>
 <footer>

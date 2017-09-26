@@ -93,7 +93,9 @@ post('/patient') do
   doctor_id = params['doctor-id'].to_i
   patient_name = params['patient-name']
   patient_birthday = params['patient-birthday']
-  patient = Patient.new({name: patient_name, birthday: patient_birthday, doctor_id: doctor_id})
-  patient.save
+  if !patient_name.empty? || !patient_birthday.empty?
+    patient = Patient.new({name: patient_name, birthday: patient_birthday, doctor_id: doctor_id})
+    patient.save
+  end
   redirect 'patients'
 end

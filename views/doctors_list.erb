@@ -1,16 +1,24 @@
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <form action="/doctor" method="post">
-      <label for="specialties_list">Select a Specialty</label>
-      <select id='specialties_list' name='specialty-id' type='text'>
-        <% @specialties.each do |specialty| %>
-        <option value="<%= specialty.id%>"> <%= specialty.name %> </option>
-        <% end %>
-      </select>
-      <label for="doctor">Add Doctor to Staff:</label>
-      <input id="doctor" name="doctor-name" type="text" placeholder="Doctor's Name">
-      <button type="submit" class="btn">Add Doctor</button>
+      <div class="row">
+        <div class="col-xs-5 col-offset-2">
+          <label for="specialties_list">Select a Specialty</label>
+          <select id='specialties_list' name='specialty-id' type='text'>
+            <% @specialties.each do |specialty| %>
+            <option value="<%= specialty.id%>"> <%= specialty.name %> </option>
+            <% end %>
+          </select>
+        </div>
+        <div class="col-xs-4">
+          <label for="doctor">Add Doctor to Staff:</label>
+          <input id="doctor" name="doctor-name" type="text" placeholder="Doctor's Name">
+        </div>
+        <div class="col-xs-1">
+          <button type="submit" class="btn add">Add Doctor</button>
+        </div>
+      </div>
     </form>
   </div>
   <div class="panel-body">

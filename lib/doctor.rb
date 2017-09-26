@@ -38,7 +38,7 @@ class Doctor
   end
 
   def self.doctor_patient_count
-    results = DB.exec("SELECT doctors.name, COUNT(*) FROM patients INNER JOIN doctors ON doctors.id = patients.doctor_id GROUP BY doctors.name;")
+    results = DB.exec("SELECT doctors.name, COUNT(*) FROM patients INNER JOIN doctors ON doctors.id = patients.doctor_id GROUP BY doctors.name ORDER BY doctors.name ASC;")
     results.values
   end
 

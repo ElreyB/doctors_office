@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Doctors on roster with patient count</h3>
+  </div>
+  <div class="panel-body">
+    <% if @doctors.any? %>
+      <% @doctors.each do |doctor|  %>
+        <ul>
+          <li> <%= doctor[0] %> has <%= doctor[1] %> patients. </li>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<footer>
+  <a href="/"><button type="button" class="btn">Home</button></a>
+  <a href="/doctors"><button type="button" class="btn">Doctors</button></a>
+  <a href="/specialties"><button type="button" class="btn">Doctors by Specialty</button></a>
+  <a href="/patients"><button type="button" class="btn">Patients on Roster</button></a>
+</footer>

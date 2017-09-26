@@ -66,6 +66,11 @@ get("/specialties") do
   erb(:specialties_list)
 end
 
+get("/patient-count") do
+  @doctors = Doctor.doctor_patient_count
+  erb(:patient_count)
+end
+
 post("/doctor") do
   doctor_name = params['doctor-name']
   if !doctor_name.empty?

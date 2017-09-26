@@ -5,3 +5,31 @@ body {
 input, select {
   color: #34303e;
 }
+
+input#doctor, input#patient, input#birthday {
+  width: 200px;
+}
+
+input#doctor {
+  margin-left: 83px;
+}
+
+input#patient {
+  margin-left: 28px;
+}
+
+button.add_patient {
+  margin-top: 25px;
+}
+
+button.add_doctor{
+  margin-top: 23px;
+}
+
+#specialties_list, #doctors_list{
+  margin-top: 10px;
+}
+
+.center {
+  text-align: center;
+}

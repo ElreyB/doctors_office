@@ -2,8 +2,8 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
     <form action="/doctor" method="post">
-      <div class="row">
-        <div class="col-xs-5 col-offset-2">
+      <div class="row center">
+        <div class="col-xs-4 col-xs-offset-1">
           <label for="specialties_list">Select a Specialty</label>
           <select id='specialties_list' name='specialty-id' type='text'>
             <% @specialties.each do |specialty| %>
@@ -12,11 +12,11 @@
           </select>
         </div>
         <div class="col-xs-4">
-          <label for="doctor">Add Doctor to Staff:</label>
-          <input id="doctor" name="doctor-name" type="text" placeholder="Doctor's Name">
+          <label for="doctor">New Doctor:</label>
+          <input id="doctor" name="doctor-name" type="text" placeholder="Doctor's Name" class="form-control">
         </div>
-        <div class="col-xs-1">
-          <button type="submit" class="btn add">Add Doctor</button>
+        <div class="col-xs-2">
+          <button type="submit" class="btn add_doctor">Add Doctor</button>
         </div>
       </div>
     </form>
